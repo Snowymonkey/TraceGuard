@@ -3,3 +3,6 @@
 sample-logs/.DS_Store
 sample-logs/NASA_access_log_Jul95
 sample-logs/small_NASA_access_log_Jul95
+sample-logs/medium_NASA_access_log_Jul95
+sample-logs/NASA_access_log_Jul95.gz
+sample-logs/websites.txt
