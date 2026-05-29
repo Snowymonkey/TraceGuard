@@ -4,7 +4,7 @@ HTTPMeaning = {'200' : 'OK, request succeeded', '304' : 'Not Modified', '400' : 
 pattern = re.compile(r'(\S+) - - \[(.*?)\] "(.*?)" (\d{3})')
 lineNumber = 1
 
-with open('sample-logs/medium_NASA_access_log_Jul95', 'r', errors='ignore') as file:
+with open('sample-logs/Apache/medium_NASA_access_log_Jul95', 'r', errors='ignore') as file:
     for line in file:
 
         match = pattern.match(line)
@@ -20,9 +20,3 @@ with open('sample-logs/medium_NASA_access_log_Jul95', 'r', errors='ignore') as f
             print(lineNumber, line)
         
         lineNumber += 1
-        
-            
-            
-
-        
-        
