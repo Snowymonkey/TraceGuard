@@ -18,20 +18,6 @@ def parse_time(line):
     
     return None
 
-def parse_service(line):
-    return "sshd"
-    # patterns = [ 
-    #     r'(sshd)'
-    # ]
-    
-    # for pattern in patterns:
-    #     match = re.search(pattern, line)
-
-    #     if match:
-    #         return match.group(1)
-    
-    # return None
-
 def parse_event_type(line):
     pattern = r'(Failed password|authentication failure|Connection closed|Received disconnect|Disconnected from authenticating|Accepted password|Accepted publickey|Invalid user)'
     match = re.search(pattern, line)
@@ -88,7 +74,7 @@ def parse_linux_auth(line):
         "time" : parse_time(line),
         "ip" : parse_ip(line),
         "port" : parse_port(line),
-        "service" : parse_service(line),
+        "service" : "sshd",
         "event_type" : parse_event_type(line),
         "target_username" : parse_target_username(line),
     }

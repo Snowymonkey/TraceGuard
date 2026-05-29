@@ -29,8 +29,18 @@ def parse_command(line):
     
     return None
 
+def parse_working_directory(line):
+    pattern = r'PWD=([^;]+)'
+
+    match = re.search(pattern, line)
+
+    if match:
+        return match.group(1)
+    
+    return None
+
 def parse_user(line):
-    pattern = r'USER=(.*?)\s+\;'
+    pattern = r'USER=([^;]+)'
 
     match = re.search(pattern, line)
 
@@ -45,5 +55,17 @@ def parse_sudo(line):
         "time" : parse_time(line),
         "user" : parse_user(line),
         "service" : "sudo",
-        "command" : parse_command(line)
+        "command" : parse_command(line),
+        "working_directory" : parse_working_directory(line)
     }
+
+
+
+
+## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
+
+# with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
+#     for line in file:
+#         if "sudo" in line:
+#             items = parse_sudo(line)
+#             print(items)
