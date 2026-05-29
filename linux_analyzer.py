@@ -1,7 +1,7 @@
 import re
 
 def parse_date(line):
-    pattern = r'(\w+\s+\d+\s+\d{2}:\d{2}:\d{2})'
+    pattern = r'(\w+\s+\d+)'
     match = re.match(pattern, line)
 
     if match:
@@ -9,19 +9,28 @@ def parse_date(line):
     
     return None
 
-def parse_service(line):
-    patterns = [ 
-        r'(sshd)',
-        r'(sudo)'
-    ]
-    
-    for pattern in patterns:
-        match = re.search(pattern, line)
+def parse_time(line):
+    pattern = r'(\d{2}:\d{2}:\d{2})'
+    match = re.search(pattern, line)
 
-        if match:
-            return match.group(1)
+    if match:
+        return match.group(1)
     
     return None
+
+def parse_service(line):
+    return "sshd"
+    # patterns = [ 
+    #     r'(sshd)'
+    # ]
+    
+    # for pattern in patterns:
+    #     match = re.search(pattern, line)
+
+    #     if match:
+    #         return match.group(1)
+    
+    # return None
 
 def parse_event_type(line):
     pattern = r'(Failed password|authentication failure|Connection closed|Received disconnect|Disconnected from authenticating|Accepted password|Accepted publickey|Invalid user)'
@@ -72,35 +81,28 @@ def parse_target_username(line):
     
     return None
 
-def parse_command(line):
-    pattern = r'COMMAND=(.+)'
 
-    match = re.search(pattern, line)
-
-    if match:
-        return match.group(1)
-    
-    return None
-
-def parse_line(line):
+def parse_linux_auth(line):
     return {
         "date" : parse_date(line),
+        "time" : parse_time(line),
         "ip" : parse_ip(line),
         "port" : parse_port(line),
         "service" : parse_service(line),
         "event_type" : parse_event_type(line),
         "target_username" : parse_target_username(line),
-        "command" : parse_command(line)
     }
 
-lineNumber = 1
 
-with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
-    for line in file:
 
-        items = parse_line(line)
+## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
 
-        
-        print(items["event_type"])
+#  lineNumber = 1
 
-        lineNumber += 1
+# with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
+#     for line in file:
+
+#         items = parse_linux_auth(line)
+
+#         print(items["time"])
+#         lineNumber += 1
