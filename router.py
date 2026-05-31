@@ -1,20 +1,25 @@
-from apache_analyzer import parse_apache
-from linux_analyzer import parse_linux_auth
-from sudo_analyzer import parse_sudo
+from parsers.apache_analyzer import parse_apache
+from parsers.linux_analyzer import parse_linux_auth
+from parsers.sudo_analyzer import parse_sudo
+from analysis_engine import process, write_report
 
-input = input("File location: ")
+# input = input("\nFile location: ")
 
-with open(input, 'r', errors='ignore') as file:
+with open("sample-logs/suspicious-logs/sus", 'r', errors='ignore') as file:
     for line in file:
 
-        if " - - " in line:         ## If Apache log
-            items = parse_apache(line)
-            print(items)
+        if " - - " in line:         ## Apache log
+            parsed_log = parse_apache(line)
 
-        elif "sshd[" in line:       ## If linux auth ssh log
-            items = parse_linux_auth(line)
-            print(items)
+        elif "sshd[" in line:       ## SSH log
+            parsed_log = parse_linux_auth(line)
         
-        elif "sudo" in line:       ## If linux auth sudo log
-            items = parse_sudo(line)
-            print(items)
+        elif "sudo" in line:       ## sudo log
+            parsed_log = parse_sudo(line)
+        
+        if parsed_log:
+            process(parsed_log)
+        else:
+            print("ERROR PARSING LINE")
+
+write_report() 

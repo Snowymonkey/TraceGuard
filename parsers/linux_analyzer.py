@@ -31,7 +31,7 @@ def parse_ip(line):
     patterns = [
         r'user\s+\w+\s+([\d.]+)',
         r'rhost=([\d.]+)',
-        r'(from\s+[\d.]+)\s+port'
+        r'from\s+([\d.]+)\s+port'
     ]
 
     for pattern in patterns:
@@ -70,6 +70,7 @@ def parse_target_username(line):
 
 def parse_linux_auth(line):
     return {
+        "source" : "auth",
         "date" : parse_date(line),
         "time" : parse_time(line),
         "ip" : parse_ip(line),
@@ -83,12 +84,12 @@ def parse_linux_auth(line):
 
 ## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
 
-#  lineNumber = 1
+# lineNumber = 1
 
 # with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
 #     for line in file:
 
 #         items = parse_linux_auth(line)
 
-#         print(items["time"])
+#         print(items)
 #         lineNumber += 1

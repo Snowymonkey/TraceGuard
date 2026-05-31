@@ -45,12 +45,13 @@ def parse_user(line):
     match = re.search(pattern, line)
 
     if match:
-        return match.group(1)
+        return match.group(1).strip()
     
     return None
 
 def parse_sudo(line):
     return {
+        "source" : "auth",
         "date" : parse_date(line),
         "time" : parse_time(line),
         "user" : parse_user(line),
