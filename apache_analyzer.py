@@ -1,6 +1,5 @@
 import re
 
-HTTPMeaning = {'200' : 'OK, request succeeded', '304' : 'Not Modified', '400' : 'Bad Request', '401' : 'Unauthorized', '403' : 'Forbidden', '404' : 'Not Found', '410' : 'Gone'}
 pattern = re.compile(r'(\S+) - - \[(.*?)\] "(.*?)" (\d{3})')
 testpattern = re.compile(r'(\S+) - - \[(\d{2}\/\w{3}\/\d{4}):(\d{2}\:\d{2}\:\d{2}).*?"(.*?)"\s+(\d{3})')
 
