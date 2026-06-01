@@ -1,6 +1,5 @@
 import re
 
-
 def parse_date(line):
     pattern = r'(\w+\s+\d+)'
     match = re.match(pattern, line)

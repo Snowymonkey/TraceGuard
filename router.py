@@ -1,7 +1,7 @@
 from parsers.apache_analyzer import parse_apache
 from parsers.linux_analyzer import parse_linux_auth
 from parsers.sudo_analyzer import parse_sudo
-from analysis_engine import process, write_report
+from analysis.analysis_engine import process, write_logs, write_report
 
 # input = input("\nFile location: ")
 
@@ -22,4 +22,5 @@ with open("sample-logs/suspicious-logs/sus", 'r', errors='ignore') as file:
         else:
             print("ERROR PARSING LINE")
 
-write_report() 
+write_logs()
+write_report()

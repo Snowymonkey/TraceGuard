@@ -1,0 +1,6 @@
+{
+    "ssh_failed_threshold" : 5,
+    "http_400_threshold" : 10,
+    "sudo_threshold" : 10
+    
+}
