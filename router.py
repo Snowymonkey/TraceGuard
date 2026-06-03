@@ -1,11 +1,13 @@
 from parsers.apache_analyzer import parse_apache
 from parsers.linux_analyzer import parse_linux_auth
 from parsers.sudo_analyzer import parse_sudo
-from analysis.analysis_engine import process, write_logs, write_report
+from analysis.analysis_engine import process, pass_analysis_data
+from analysis.report_writer import write_logs, write_reports
+from analysis.alerter import detect_threats
 
 # input = input("\nFile location: ")
 
-with open("sample-logs/suspicious-logs/sus", 'r', errors='ignore') as file:
+with open("sample-logs/suspicious-logs/sus-times", 'r', errors='ignore') as file:
     for line in file:
 
         if " - - " in line:         ## Apache log
@@ -22,5 +24,7 @@ with open("sample-logs/suspicious-logs/sus", 'r', errors='ignore') as file:
         else:
             print("ERROR PARSING LINE")
 
-write_logs()
-write_report()
+analysis_data = pass_analysis_data()
+alerts = detect_threats(analysis_data)
+write_logs(analysis_data)
+write_reports(alerts)
