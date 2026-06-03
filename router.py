@@ -8,7 +8,7 @@ from analysis.alerter import detect_threats
 # input = input("\nFile location: ")
 parsed_log = None
 
-with open("sample-logs/Linux/command-logs", 'r', errors='ignore') as file:
+with open("sample-logs/suspicious-logs/sus", 'r', errors='ignore') as file:
     for line in file:
 
         if " - - " in line:         ## Apache log

@@ -32,7 +32,7 @@ def detect_threats(analysis_data):
             alert_data["Unqiue 404 Errors"] = len(ip_events_counter[ip]["Tracked 404s"])
             alert_data["Max 404s in Timeframe"] = (ip_events_counter[ip]["Max 404s in Timeframe"], http_404_timeframe)
 
-            alerts.append({"ip": ip, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
+            alerts.append({"ip": ip, "user" : None, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
             alert_data = {}
 
         
@@ -41,7 +41,7 @@ def detect_threats(analysis_data):
             attack_type = "Possible Web Scan"
             alert_data["400 Errors"] = ip_events_counter[ip]["400 Errors"]
 
-            alerts.append({"ip": ip, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
+            alerts.append({"ip": ip, "user" : None, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
             alert_data = {}
         
         
@@ -53,7 +53,7 @@ def detect_threats(analysis_data):
             alert_data["Successful SSH Logins"] = ip_events_counter[ip]["Successful SSH Logins"]
             alert_data["Failures Untill Login"] = count
 
-            alerts.append({"ip": ip, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
+            alerts.append({"ip": ip, "user" : None, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})
             alert_data = {}
 
         

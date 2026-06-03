@@ -4,7 +4,7 @@ def write_logs(analysis_data):
     ip_events_counter = analysis_data["ip_events_counter"]
     sudo_events_counter = analysis_data["sudo_events_counter"]
 
-    with open("reports/ip_log", "a") as file:
+    with open("reports/ip_logs", "a") as file:
         for ip in ip_events_counter:
             file.write(f"{str(ip)} - - {str(ip_events_counter[ip])}\n")
 
@@ -87,5 +87,5 @@ def clear_reports():
     open("reports/sudo_reports", "w").close()
 
 def clear_logs():
-    open("reports/ip_log", "w").close()
-    open("reports/sudo_log", "w").close()
+    open("reports/ip_logs", "w").close()
+    open("reports/sudo_logs", "w").close()

@@ -1,12 +1,12 @@
 {
     "ssh_failed_threshold" : 5,
 
-    "http_400_threshold" : 10,
+    "http_400_threshold" : 0,
     "unique_404_threshold" : 5,
     "404_error_timeframe" : 10,
 
     "sudo_commands_timeframe" : 10,
-    "sudo_threshold" : 4,
+    "sudo_threshold" : 0,
 
     "show_full_logs_on_alert" : true
 }
