@@ -9,6 +9,7 @@ unique_404_threshold = config["unique_404_threshold"]
 sudo_threshold = config["sudo_threshold"]
 http_404_timeframe = config["404_error_timeframe"]
 sudo_commands_timeframe = config["sudo_commands_timeframe"]
+show_full_logs_on_alert = config["show_full_logs_on_alert"]
 
 alerts = [
     # {"ip" : "1.1.1.1", 
@@ -81,7 +82,6 @@ def detect_threats(analysis_data):
             alert_data = {}
     
     return alerts
-
 
 def max_count_till_login(ip, ip_events):
     count = 0

@@ -1,3 +1,11 @@
+import json
+
+with open("analysis/config.json", "r") as json_file:
+    config = json.load(json_file)
+
+show_full_logs_on_alert = config["show_full_logs_on_alert"]
+
+
 def write_logs(analysis_data):
     clear_logs()
 
@@ -43,11 +51,12 @@ def write_http_reports(alerts):
                 file.write(alert["attack_type"] + "\n\n")
 
                 ## Write log history
-                for parsed_log in alert["logs"]:
-                    if parsed_log["source"] == "Apache":
-                        file.write(build_http_log(parsed_log))
-                    elif parsed_log["source"] == "auth" and parsed_log["service"] == "sshd":
-                        file.write(build_ssh_log(parsed_log))
+                if show_full_logs_on_alert:
+                    for parsed_log in alert["logs"]:
+                        if parsed_log["source"] == "Apache":
+                            file.write(build_http_log(parsed_log))
+                        elif parsed_log["source"] == "auth" and parsed_log["service"] == "sshd":
+                            file.write(build_ssh_log(parsed_log))
                 file.write("\n————————————————————————————————————————————————————\n\n")
 
 def write_sudo_reports(alerts):
@@ -67,11 +76,20 @@ def write_sudo_reports(alerts):
                 file.write(alert["attack_type"] + "\n\n")
 
                 ## Write log history
-                for parsed_log in alert["logs"]:
-                    if parsed_log["source"] == "auth" and parsed_log["service"] == "sudo":
-                        file.write(build_sudo_log(parsed_log))
+                if show_full_logs_on_alert:
+                    for parsed_log in alert["logs"]:
+                        if parsed_log["source"] == "auth" and parsed_log["service"] == "sudo":
+                            file.write(build_sudo_log(parsed_log))
                 file.write("\n————————————————————————————————————————————————————\n\n")
 
+def write_multi_chain_report(correlated_alerts):
+    with open("reports/multi-chain-reports", "a") as file:
+        for alert in correlated_alerts:
+            file.write(f"ALERT - Multi-Stage Attack Chain - {alert["ip"]}\n\n")
+            file.write(f"Reconnaissance: \n{alert["recon"]}\n\n")
+            file.write(f"Access Attempt: \n{alert["attack"]}\n\n")
+            file.write(f"Breach: \n{alert["breach"]}\n")
+            file.write("\n————————————————————————————————————————————————————\n\n")
 
 def build_ssh_log(parsed_log):
     return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["event_type"] + " on user: " + parsed_log["target_username"] + '\n'
@@ -85,6 +103,7 @@ def build_sudo_log(parsed_log):
 def clear_reports():
     open("reports/ip_reports", "w").close()
     open("reports/sudo_reports", "w").close()
+    open("reports/multi-chain-reports", "w").close()
 
 def clear_logs():
     open("reports/ip_logs", "w").close()
