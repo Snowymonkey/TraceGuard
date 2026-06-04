@@ -6,38 +6,38 @@ from analysis.report_writer import write_logs, write_reports, write_multi_chain_
 from analysis.alerter import detect_threats
 from analysis.correlation_engine import correlate_alerts
 
-# input = input("\nFile location: ")
 
-parsed_log = None
+def route(file_path):
+    parsed_log = None
 
-with open("tests/Apache-test", 'r', errors='ignore') as file:
-    for line in file:
+    with open(file_path, 'r', errors='ignore') as file:
+        for line in file:
 
-        if " - - " in line:         ## Apache log
-            parsed_log = parse_apache(line)
-            if parsed_log is not None and parsed_log["ip"] is None:
-                parsed_log = None
+            if " - - " in line:         ## Apache log
+                parsed_log = parse_apache(line)
+                if parsed_log is not None and parsed_log["ip"] is None:
+                    parsed_log = None
 
-        elif "sshd[" in line:       ## SSH log
-            parsed_log = parse_linux_auth(line)
-            if parsed_log is not None and parsed_log["ip"] is None:
-                parsed_log = None                                                  
+            elif "sshd[" in line:       ## SSH log
+                parsed_log = parse_linux_auth(line)
+                if parsed_log is not None and parsed_log["ip"] is None:
+                    parsed_log = None                                                  
 
-        elif "sudo" in line:       ## sudo log
-            parsed_log = parse_sudo(line)
-            if parsed_log is not None and parsed_log["user"] is None or parsed_log["command"] is None:
-                parsed_log = None
-        
-        if parsed_log:
-            process(parsed_log)
-        else:
-            print("ERROR PARSING LINE -> " + line)
+            elif "sudo" in line:       ## sudo log
+                parsed_log = parse_sudo(line)
+                if parsed_log is not None and parsed_log["user"] is None or parsed_log["command"] is None:
+                    parsed_log = None
+            
+            if parsed_log:
+                process(parsed_log)
+            else:
+                print("ERROR PARSING LINE -> " + line)
 
-        parsed_log = None
+            parsed_log = None
 
-analysis_data = pass_analysis_data()
-alerts = detect_threats(analysis_data)
-correlated_alerts = correlate_alerts(alerts)
-write_logs(analysis_data)
-write_reports(alerts)
-write_multi_chain_report(correlated_alerts)
+    analysis_data = pass_analysis_data()
+    alerts = detect_threats(analysis_data)
+    correlated_alerts = correlate_alerts(alerts)
+    write_logs(analysis_data)
+    write_reports(alerts)
+    write_multi_chain_report(correlated_alerts)

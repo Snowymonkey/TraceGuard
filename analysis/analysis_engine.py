@@ -78,7 +78,7 @@ def process(parsed_log):
                 start_log_time = ip_timeframe[ip]["Start 404 Error Time"]
 
                 if start_log_time is None:
-                    ip_timeframe[ip]["Current 404s in Timeframe"] += 1
+                    ip_timeframe[ip]["Current 404s in Timeframe"] = 1
                     ip_timeframe[ip]["Start 404 Error Time"] = curr_log_time
 
                 elif (curr_log_time - start_log_time).total_seconds() > http_404_timeframe:

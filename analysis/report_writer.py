@@ -92,7 +92,10 @@ def write_multi_chain_report(correlated_alerts):
             file.write("\n————————————————————————————————————————————————————\n\n")
 
 def build_ssh_log(parsed_log):
-    return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["event_type"] + " on user: " + parsed_log["target_username"] + '\n'
+    if parsed_log["target_username"]:
+        return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["event_type"] + " on user: " + parsed_log["target_username"] + '\n'
+    else:
+        return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["event_type"] + "\n"
 
 def build_http_log(parsed_log):
     return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["request"] + " - Response: " + parsed_log["response_code"] + '\n'
