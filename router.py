@@ -36,7 +36,6 @@ with open("tests/Apache-test", 'r', errors='ignore') as file:
         parsed_log = None
 
 analysis_data = pass_analysis_data()
-print(analysis_data)
 alerts = detect_threats(analysis_data)
 correlated_alerts = correlate_alerts(alerts)
 write_logs(analysis_data)
