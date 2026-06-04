@@ -31,7 +31,7 @@ with open("sample-logs/multi-chain-logs/multi-chain", 'r', errors='ignore') as f
         if parsed_log:
             process(parsed_log)
         else:
-            print("ERROR PARSING LINE - " + line)
+            print("ERROR PARSING LINE -> " + line)
 
         parsed_log = None
 

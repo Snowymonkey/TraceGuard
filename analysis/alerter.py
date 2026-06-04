@@ -27,10 +27,10 @@ def detect_threats(analysis_data):
     for ip in ip_events_counter:
 
         if ip_events_counter[ip]["400 Errors"] > http_400_threshold and len(ip_events_counter[ip]["Tracked 404s"]) > unique_404_threshold:
-            alert_type = "Unqiue 404 Threshold Reached"
+            alert_type = "Unique 404 Threshold Reached"
             attack_type = "Possible Web Scan"
             alert_data["400 Errors"] = ip_events_counter[ip]["400 Errors"]
-            alert_data["Unqiue 404 Errors"] = len(ip_events_counter[ip]["Tracked 404s"])
+            alert_data["Unique 404 Errors"] = len(ip_events_counter[ip]["Tracked 404s"])
             alert_data["Max 404s in Timeframe"] = (ip_events_counter[ip]["Max 404s in Timeframe"], http_404_timeframe)
 
             alerts.append({"ip": ip, "user" : None, "alert_type" : alert_type, "attack_type" : attack_type, "alert_data" : alert_data, "logs" : ip_events[ip]})

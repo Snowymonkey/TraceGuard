@@ -30,7 +30,7 @@ def correlate_alerts(alerts):
     for ip in ip_alerts:
         if len(ip_alerts[ip]) > 0:
             all_attacks = ip_alerts[ip]
-            if "Unqiue 404 Threshold Reached" in all_attacks:
+            if "Unique 404 Threshold Reached" in all_attacks:
                 recon = "Unique 404 Threshold Reached" 
             elif "HTTP 400 Threshold Reached" in all_attacks:
                 recon = "HTTP 400 Threshold Reached"
