@@ -140,6 +140,15 @@ def process(parsed_log):
         else:
             sudo_timeframe[user]["Current Sudo Commands in Timeframe"] += 1
 
+def clear_analysis_data():
+    ip_events = {}
+    sudo_events = {}
+
+    ip_events_counter = {}
+    sudo_events_counter = {}
+
+    ip_timeframe = {}
+    sudo_timeframe = {}
 
 def pass_analysis_data():
     return {

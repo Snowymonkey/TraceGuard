@@ -5,4 +5,3 @@ sample-logs
 __pycache__
 reports
 expansion.txt
-tests/test-logs

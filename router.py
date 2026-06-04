@@ -10,7 +10,7 @@ from analysis.correlation_engine import correlate_alerts
 
 parsed_log = None
 
-with open("sample-logs/multi-chain-logs/multi-chain", 'r', errors='ignore') as file:
+with open("tests/Apache-test", 'r', errors='ignore') as file:
     for line in file:
 
         if " - - " in line:         ## Apache log
@@ -36,6 +36,7 @@ with open("sample-logs/multi-chain-logs/multi-chain", 'r', errors='ignore') as f
         parsed_log = None
 
 analysis_data = pass_analysis_data()
+print(analysis_data)
 alerts = detect_threats(analysis_data)
 correlated_alerts = correlate_alerts(alerts)
 write_logs(analysis_data)
