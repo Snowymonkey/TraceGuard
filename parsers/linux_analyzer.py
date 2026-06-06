@@ -79,17 +79,3 @@ def parse_linux_auth(line):
         "event_type" : parse_event_type(line),
         "target_username" : parse_target_username(line),
     }
-
-
-
-## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
-
-# lineNumber = 1
-
-# with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
-#     for line in file:
-
-#         items = parse_linux_auth(line)
-
-#         print(items)
-#         lineNumber += 1

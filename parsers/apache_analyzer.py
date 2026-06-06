@@ -16,28 +16,3 @@ def parse_apache(line):
         }
     
     return None
-
-
-## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
-
-# lineNumber = 1
-
-# with open('sample-logs/Apache/small_NASA_access_log_Jul95', 'r', errors='ignore') as file:
-#     for line in file:
-
-#         match = testpattern.match(line)
-    
-
-#         if match:
-#             ip = match.group(1)
-#             date = match.group(2)
-#             time = match.group(3)
-#             request = match.group(4)
-#             response_code = match.group(5)
-#         else:
-#             print("=============ERROR=============")
-#             print(lineNumber, line)
-        
-#         print(time)
-
-#         lineNumber += 1

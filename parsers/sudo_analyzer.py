@@ -58,14 +58,3 @@ def parse_sudo(line):
         "command" : parse_command(line),
         "working_directory" : parse_working_directory(line)
     }
-
-
-
-
-## TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST -- TEST
-
-# with open('sample-logs/Linux/chatgpt-linux-logs', 'r', errors='ignore') as file:
-#     for line in file:
-#         if "sudo" in line:
-#             items = parse_sudo(line)
-#             print(items)

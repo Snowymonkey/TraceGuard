@@ -28,7 +28,7 @@ def correlate_alerts(alerts):
         ip_alerts[alert["ip"]].add(alert["alert_type"])
     
     for ip in ip_alerts:
-        if len(ip_alerts[ip]) > 0:
+        if len(ip_alerts[ip]) > 1:
             all_attacks = ip_alerts[ip]
             if "Unique 404 Threshold Reached" in all_attacks:
                 recon = "Unique 404 Threshold Reached" 

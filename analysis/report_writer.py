@@ -6,29 +6,30 @@ with open("analysis/config.json", "r") as json_file:
 show_full_logs_on_alert = config["show_full_logs_on_alert"]
 
 
-def write_logs(analysis_data):
-    clear_logs()
+def write_logs(analysis_data, export_location):
+    
+    clear_logs(export_location)
 
     ip_events_counter = analysis_data["ip_events_counter"]
     sudo_events_counter = analysis_data["sudo_events_counter"]
 
-    with open("reports/ip_logs", "a") as file:
+    with open(export_location + "/ip_logs", "a") as file:
         for ip in ip_events_counter:
             file.write(f"{str(ip)} - - {str(ip_events_counter[ip])}\n")
 
-    with open("reports/sudo_logs", "a") as file:
+    with open(export_location + "/sudo_logs", "a") as file:
         for user in sudo_events_counter:
             file.write(f"{str(user)} - - {str(sudo_events_counter[user])}\n")
 
-def write_reports(alerts):
-    clear_reports()
-    write_http_reports(alerts)
-    write_sudo_reports(alerts)
+def write_reports(alerts, export_location):
+    clear_reports(export_location)
+    write_http_reports(alerts, export_location)
+    write_sudo_reports(alerts, export_location)
 
 
-def write_http_reports(alerts):
+def write_http_reports(alerts, export_location):
 
-    with open("reports/ip_reports", "a") as file:
+    with open(export_location + "/ip_reports", "a") as file:
         for alert in alerts:
            if alert["user"] is None:
                 ## Write Log Title
@@ -59,9 +60,9 @@ def write_http_reports(alerts):
                             file.write(build_ssh_log(parsed_log))
                 file.write("\n————————————————————————————————————————————————————\n\n")
 
-def write_sudo_reports(alerts):
+def write_sudo_reports(alerts, export_location):
 
-    with open("reports/sudo_reports", "a") as file:
+    with open(export_location + "/sudo_reports", "a") as file:
         for alert in alerts:
            if alert["ip"] is None:
                 ## Write Log Title
@@ -82,8 +83,9 @@ def write_sudo_reports(alerts):
                             file.write(build_sudo_log(parsed_log))
                 file.write("\n————————————————————————————————————————————————————\n\n")
 
-def write_multi_chain_report(correlated_alerts):
-    with open("reports/multi-chain-reports", "a") as file:
+def write_multi_chain_report(correlated_alerts, export_location):
+
+    with open(export_location + "/multi-chain-reports", "a") as file:
         for alert in correlated_alerts:
             file.write(f"ALERT - Multi-Stage Attack Chain - {alert["ip"]}\n\n")
             file.write(f"Reconnaissance: \n{alert["recon"]}\n\n")
@@ -103,11 +105,14 @@ def build_http_log(parsed_log):
 def build_sudo_log(parsed_log):
     return parsed_log["date"] + " " + parsed_log["time"] + " " + parsed_log["command"] + "\n"
 
-def clear_reports():
-    open("reports/ip_reports", "w").close()
-    open("reports/sudo_reports", "w").close()
-    open("reports/multi-chain-reports", "w").close()
+def clear_reports(export_location):
 
-def clear_logs():
-    open("reports/ip_logs", "w").close()
-    open("reports/sudo_logs", "w").close()
+    open(export_location + "/ip_reports", "w").close()
+    open(export_location + "/sudo_reports", "w").close()
+    open(export_location + "/multi-chain-reports", "w").close()
+        
+
+def clear_logs(export_location):
+    
+    open(export_location + "/ip_logs", "w").close()
+    open(export_location + "/sudo_logs", "w").close()
