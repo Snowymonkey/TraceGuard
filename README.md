@@ -21,15 +21,11 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
 
 ---
 
-## Project Structure
+## Installation
 
-```text
-traceguard/
-├── cli.py                  # CLI entry point
-├── router.py              # Log routing + analysis dispatcher
-├── analysis/
-│   └── config.json        # Configuration file
-├── reports/               # Default output directory (auto-generated)
-└── logs/                  # Optional input logs
-```
+TraceGuard requires Python 3.9 or higher and has no external dependencies.
 
+Clone the repository:
+
+git clone <repo-url>
+cd traceguard
