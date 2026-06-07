@@ -23,10 +23,10 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
 
 ## TraceGuard's Structure
 
-            log-files
-               ⭣
-            router.py
-               ⭣
+log-files
+⭣
+router.py
+⭣
  ————————————————————————————————
 | Linux Parsers / Apache Parser |
  ————————————————————————————————
