@@ -115,34 +115,88 @@ No additional installation is required.
 
 ## Usage
 
+| Argument | Description |
+|-----------|------------|
+| `-f`, `--file` | Analyze a single log file |
+| `-d`, `--directory` | Analyze all supported log files in a directory |
+| `-e`, `--export` | Output directory for generated reports |
+| `-v`, `--verbose` | Enable runtime status logging |
+| `--version` | Display version information |
+
 ### Analyze a Single Log File
 
 ```bash
-python cli.py --file /path/to/logfile
+python traceguard.py --file /path/to/logfile
+python traceguard.py -f /path/to/logfile
 ```
 
 ### Analyze a Directory of Logs
 
 ```bash
-python cli.py --directory /path/to/logs
+python traceguard.py --directory /path/to/logs
+python traceguard.py -d /path/to/logs
 ```
 
 ### Enable Verbose Output
 
 ```bash
-python cli.py --file logs/apache.log --verbose
+python traceguard.py --verbose -f logs/apache.log
+python traceguard.py -v -f logs/apache.log 
 ```
 
 ### Specify a Custom Export Directory
 
 ```bash
-python cli.py --file logs/apache.log --export output/
+python traceguard.py -f logs/apache.log --export output/
 ```
 
 ### Display Version Information
 
 ```bash
-python cli.py --version
+python traceguard.py --version
 ```
 
 ---
+
+## Output Reports
+
+TraceGuard generates multiple forensic artifacts in the specified export directory.
+
+### `ip_logs`
+
+Aggregated IP-based activity counts.
+
+### `sudo_logs`
+
+Aggregated sudo activity by user.
+
+### `ip_reports`
+
+Detailed security alerts related to:
+
+- HTTP anomalies
+- SSH brute-force attempts
+- Authentication abuse
+- Attack classifications
+
+### `sudo_reports`
+
+Privilege escalation and sudo abuse reports.
+
+### `multi-chain-reports`
+
+Correlated attack chains representing:
+
+```text
+Reconnaissance → Access Attempt → Breach
+```
+
+---
+
+## Configuration
+
+Configuration is controlled through:
+
+```text
+analysis/config.json
+```
