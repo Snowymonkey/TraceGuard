@@ -221,13 +221,13 @@ Example:
 
 | Setting | Description |
 |----------|------------|
-| `ssh_failed_threshold` | Include raw log evidence in generated alerts |
-| `http_400_threshold` | Explination |
-| `unique_404_threshold` | Explination |
-| `404_error_timeframe` | Explination |
-| `sudo_commands_timeframe` | Explination |
-| `sudo_threshold` | Explination |
-| `show_full_logs_on_alert` | Explination |
+| `ssh_failed_threshold` | Threshold for failed SSH password attempts until triggered alert |
+| `sudo_threshold` | Threshold for number of sudo commands until triggered alert |
+| `http_400_threshold` | Threshold for (400 - 499) client error responses until triggered alert |
+| `unique_404_threshold` | Threshold for 404 error responses until triggered alert |
+| `404_error_timeframe` | Time window (in seconds) used to group and evaluate HTTP 404 errors for anomaly detection. |
+| `sudo_commands_timeframe` | Time window (in seconds) used to group and evaluate sudo commands for anomaly detection. |
+| `show_full_logs_on_alert` | Include raw log evidence in generated alerts |
 
 
 
