@@ -21,6 +21,16 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
 
 ---
 
+## TraceGuard's Structure
+
+            log-files
+               ⭣
+            router.py
+               ⭣
+ ————————————————————————————————
+| Linux Parsers / Apache Parser |
+ ————————————————————————————————
+
 ## Installation
 
 TraceGuard requires Python 3.9 or higher and has no external dependencies.
