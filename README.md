@@ -215,6 +215,7 @@ Example:
 
     "show_full_logs_on_alert" : true
 }
+```
 
 ### Available Options
 
@@ -227,4 +228,6 @@ Example:
 | `sudo_commands_timeframe` | Explination |
 | `sudo_threshold` | Explination |
 | `show_full_logs_on_alert` | Explination |
+
+
 
