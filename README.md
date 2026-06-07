@@ -229,5 +229,14 @@ Example:
 | `sudo_commands_timeframe` | Time window (in seconds) used to group and evaluate sudo commands for anomaly detection. |
 | `show_full_logs_on_alert` | Include raw log evidence in generated alerts |
 
+## Notes
 
+- Designed for offline log analysis
+- Overwrites report files on each execution
+- Assumes structured or semi-structured log inputs
 
+---
+
+## Version
+
+**TraceGuard 1.0.0**
