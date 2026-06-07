@@ -200,3 +200,31 @@ Configuration is controlled through:
 ```text
 analysis/config.json
 ```
+
+Example:
+```json
+{
+    "ssh_failed_threshold" : 0,
+
+    "http_400_threshold" : 0,
+    "unique_404_threshold" : 0,
+    "404_error_timeframe" : 10,
+
+    "sudo_commands_timeframe" : 10,
+    "sudo_threshold" : 0,
+
+    "show_full_logs_on_alert" : true
+}
+
+### Available Options
+
+| Setting | Description |
+|----------|------------|
+| `ssh_failed_threshold` | Include raw log evidence in generated alerts |
+| `http_400_threshold` | Explination |
+| `unique_404_threshold` | Explination |
+| `404_error_timeframe` | Explination |
+| `sudo_commands_timeframe` | Explination |
+| `sudo_threshold` | Explination |
+| `show_full_logs_on_alert` | Explination |
+
