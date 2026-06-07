@@ -53,7 +53,7 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
                         │
                         ▼
                ┌─────────────────┐
-               │Detection Engine │
+               │ Analysis Engine │
                └────────┬────────┘
                         │
         ┌───────────────┼────────────────┐
