@@ -21,15 +21,78 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
 
 ---
 
-## TraceGuard's Structure
+## TraceGuard Architecture
 
-log-files
-⭣
-router.py
-⭣
- ————————————————————————————————
-| Linux Parsers / Apache Parser |
- ————————————————————————————————
+```text
+                    ┌─────────────┐
+                    │  Log Files  │
+                    └──────┬──────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │  router.py  │
+                    └──────┬──────┘
+                           │
+         ┌─────────────────┴─────────────────┐
+         │                                   │
+         ▼                                   ▼
+ ┌─────────────────┐               ┌─────────────────┐
+ │ Apache Parser   │               │ Linux Parsers   │
+ │                 │               │                 │
+ │ • HTTP Requests │               │ • SSH Events    │
+ │ • Status Codes  │               │ • Sudo Events   │
+ │ • Source IPs    │               │ • User Activity │
+ └────────┬────────┘               └────────┬────────┘
+          │                                 │
+          └──────────────┬──────────────────┘
+                         │
+                         ▼
+               ┌─────────────────┐
+               │ Parsed Log Data │
+               └────────┬────────┘
+                        │
+                        ▼
+               ┌─────────────────┐
+               │ Detection Engine│
+               └────────┬────────┘
+                        │
+        ┌───────────────┼────────────────┐
+        │               │                │
+        ▼               ▼                ▼
+ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+ │ HTTP Attack │ │ SSH Attack  │ │ Sudo Abuse  │
+ │ Detection   │ │ Detection   │ │ Detection   │
+ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘
+        │               │               │
+        └───────────────┼───────────────┘
+                        │
+                        ▼
+              ┌──────────────────┐
+              │ Alert Generation │
+              └────────┬─────────┘
+                       │
+                       ▼
+            ┌──────────────────────┐
+            │ Correlation Engine   │
+            │ (Attack Chaining)    │
+            └──────────┬───────────┘
+                       │
+                       ▼
+             ┌────────────────────┐
+             │ report_writer.py   │
+             └──────────┬─────────┘
+                        │
+                        ▼
+      ┌──────────────────────────────────┐
+      │ Generated Reports                │
+      │                                  │
+      │ • ip_logs                        │
+      │ • sudo_logs                      │
+      │ • ip_reports                     │
+      │ • sudo_reports                   │
+      │ • multi-chain-reports            │
+      └──────────────────────────────────┘
+```
 
 ## Installation
 
