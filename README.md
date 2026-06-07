@@ -105,7 +105,7 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
 ### Clone the Repository
 
 ```bash
-git clone [<repo-url>](https://github.com/Snowymonkey/TraceGuard)
+git clone https://github.com/Snowymonkey/TraceGuard
 cd traceguard
 ```
 
