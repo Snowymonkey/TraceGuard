@@ -140,7 +140,7 @@ python traceguard.py -d /path/to/logs
 ### Enable Verbose Output
 
 ```bash
-python traceguard.py --verbose -f logs/apache.log
+python traceguard.py --verbose -f logs/apache-log
 python traceguard.py -v -f logs/apache.log 
 ```
 
