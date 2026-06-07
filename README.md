@@ -53,7 +53,7 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
                         │
                         ▼
                ┌─────────────────┐
-               │ Detection Engine│
+               │Detection Engine │
                └────────┬────────┘
                         │
         ┌───────────────┼────────────────┐
@@ -94,11 +94,55 @@ TraceGuard provides a lightweight but effective detection pipeline for local sec
       └──────────────────────────────────┘
 ```
 
+---
+
 ## Installation
 
-TraceGuard requires Python 3.9 or higher and has no external dependencies.
+### Requirements
 
-Clone the repository:
+- Python 3.9 or higher
 
+### Clone the Repository
+
+```bash
 git clone <repo-url>
 cd traceguard
+```
+
+No additional installation is required.
+
+---
+
+## Usage
+
+### Analyze a Single Log File
+
+```bash
+python cli.py --file /path/to/logfile
+```
+
+### Analyze a Directory of Logs
+
+```bash
+python cli.py --directory /path/to/logs
+```
+
+### Enable Verbose Output
+
+```bash
+python cli.py --file logs/apache.log --verbose
+```
+
+### Specify a Custom Export Directory
+
+```bash
+python cli.py --file logs/apache.log --export output/
+```
+
+### Display Version Information
+
+```bash
+python cli.py --version
+```
+
+---
