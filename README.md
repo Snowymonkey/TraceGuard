@@ -120,6 +120,8 @@ Before you start using `TraceGuard` it would be smart to run the unit tests.
 ```bash
 python tester.py
 ```
+This will ensure all componenets of the project are functional on your device.
+
 
 | Argument | Description |
 |-----------|------------|
