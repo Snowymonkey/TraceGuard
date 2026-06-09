@@ -115,6 +115,12 @@ No additional installation is required.
 
 ## Usage
 
+Before you start using `TraceGuard` it would be smart to run the unit tests.
+
+```bash
+python tester.py
+```
+
 | Argument | Description |
 |-----------|------------|
 | `-f`, `--file` | Analyze a single log file |
