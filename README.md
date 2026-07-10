@@ -115,6 +115,8 @@ No additional installation is required.
 
 ## Usage
 
+A demonstration of `TraceGuard`'s usage can be found [here]([url](https://youtu.be/pbGsupCCBXQ)).
+
 Before you start using `TraceGuard` it would be smart to run the unit tests.
 
 ```bash
