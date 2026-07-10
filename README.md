@@ -4,6 +4,7 @@ TraceGuard is a command-line cybersecurity log analysis tool designed to detect,
 
 The tool analyzes log data from multiple sources, extracts structured events, detects anomalies using frequency and temporal patterns, and generates human-readable security reports for investigation.
 
+A demonstration and overview of `TraceGuard`'s can be found [here](https://youtu.be/pbGsupCCBXQ).
 ---
 
 ## Features
@@ -114,8 +115,6 @@ No additional installation is required.
 ---
 
 ## Usage
-
-A demonstration of `TraceGuard`'s usage can be found [here](https://youtu.be/pbGsupCCBXQ).
 
 Before you start using `TraceGuard` it would be smart to run the unit tests.
 
